@@ -8,6 +8,8 @@ import {
   Switch,
   Route 
 } from "react-router-dom";
+import Alert from './components/Alert';
+import AddNote from './components/AddNote';
 
 
 function App() {
@@ -16,10 +18,12 @@ function App() {
       <NoteState>
         <Router>
           <Navbar />
+          <Alert message='This is a Alert Component' />
           <div className="container">
             <Switch>
               <Route exact path="/"><Home /></Route>
               <Route exact path="/about"><About /></Route>
+              <Route exact path="/add-note"><AddNote /></Route>
             </Switch>
           </div>
         </Router>
