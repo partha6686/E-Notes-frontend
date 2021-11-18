@@ -1,15 +1,11 @@
-import React, {useContext, useEffect} from 'react';
-import noteContext from '../context/notes/noteContext';
+import React from 'react';
+// import noteContext from '../context/notes/noteContext';
 
 const About = () => {
-    let a = useContext(noteContext);
-    useEffect(() => {
-        a.update();
-        // eslint-disable-next-line
-    }, [])
+    // let a = useContext(noteContext);
     return (
         <div>
-            This is About {a.state.name} of sem {a.state.sem}
+            This is About 
         </div>
     );
 }
