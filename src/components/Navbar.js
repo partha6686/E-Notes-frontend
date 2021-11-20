@@ -22,6 +22,8 @@ const Navbar = () => {
                             <Link className={location.pathname==='/add-note'?"nav-link active":"nav-link"} to="/add-note">Add Note</Link>
                         </li> 
                     </ul>
+                    <Link className="btn btn-outline-danger mx-2" to='/login' >Login</Link>
+                    <Link className="btn btn-danger mx-2" to='/signup' >Signup</Link>
                 </div>
             </div>
         </nav>

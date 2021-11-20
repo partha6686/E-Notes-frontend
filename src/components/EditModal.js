@@ -7,7 +7,6 @@ const EditModal = (props) => {
     const {editNote} = useContext(noteContext);
     const closeModal = useRef(null);
     const handleSubmit = (e) => {
-        console.log(currentNote);
         editNote(currentNote.id,currentNote.etitle,currentNote.edescription,currentNote.etag);
         closeModal.current.click();
     }
@@ -46,7 +45,7 @@ const EditModal = (props) => {
                     </div>
                     <div className="modal-footer">
                         <button ref={closeModal} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <Link to="/" type="submit" className="btn btn-primary" onClick={handleSubmit}>Update Note</Link>
+                        <Link to="/" type="submit" className={currentNote.etitle.length<3 || currentNote.edescription.length<5 ? "btn btn-primary disabled": "btn btn-primary " } onClick={handleSubmit}>Update Note</Link>
                     </div>
                     </div>
                 </div>`
