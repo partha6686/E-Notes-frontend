@@ -18,9 +18,15 @@ const AddNote = (props) => {
         }
         // eslint-disable-next-line
     }, [])
-    const handleSubmit = (e) => {
-        addNote(newNote.title,newNote.description,newNote.tag===''?'default':newNote.tag);
-        props.showAlert("Added Note Successfully","success");
+    const handleSubmit = async (e) => {
+        const json = await addNote(newNote.title,newNote.description,newNote.tag===''?'default':newNote.tag);
+        // console.log(json);
+        if(!json.errors){
+            props.showAlert("Added Note Successfully","success");
+        }else{
+            props.showAlert(json.errors.msg?json.errors.msg:json.errors,"danger");
+            e.preventDefault();
+        }
     }
     const handleChange = (e) => {
         setNewNote({...newNote, [e.target.name]: e.target.value });
@@ -41,7 +47,7 @@ const AddNote = (props) => {
                     <label htmlFor="tag" className="form-label">Tag</label>
                     <input type="text" className="form-control" onChange={handleChange} id="tag" name="tag" value={newNote.tag} aria-describedby="tag"/>
                 </div>
-                <Link to="/" type="submit" className={newNote.title.length<3 || newNote.description.length<5 ? "btn btn-primary disabled": "btn btn-primary " } onClick={handleSubmit}>Add Note</Link>
+                <Link to="/" type="submit" className="btn btn-primary" onClick={handleSubmit}>Add Note</Link>
             </form>
         </div>
     )

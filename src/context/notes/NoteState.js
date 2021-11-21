@@ -19,7 +19,6 @@ const NoteState = (props)=>{
       setNotes(json);  
     }
 
-
     //* Add a Note
     const addNote = async (title, description, tag)=>{
       //* API Calls
@@ -37,6 +36,7 @@ const NoteState = (props)=>{
       if(json.status===200){
         setNotes(notes.concat(json)); //push updates whereas concat returns a new array
       }
+      return json;
     }
 
     //* Delete a Note

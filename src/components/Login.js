@@ -30,7 +30,7 @@ const Login = (props) => {
             history.push('/');
             props.showAlert("Logged in Successfully","success");
         }else{
-            props.showAlert(json.errors,"danger");
+            props.showAlert(json.errors.msg?json.errors.msg:json.errors,"danger");
             // alert(json.errors);
         }
     }
@@ -40,7 +40,7 @@ const Login = (props) => {
 
     return (
         <div className="container col-md-6 my-3">
-            <h2 class="text-center my-3">Login</h2>
+            <h2 className="text-center my-3">Login</h2>
             <form className="mt-3" onSubmit={handleSubmit} >
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email address</label>
