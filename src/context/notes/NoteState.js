@@ -80,6 +80,7 @@ const NoteState = (props)=>{
         }
       });
       setNotes(newNotes);
+      return json;
     }
 
 

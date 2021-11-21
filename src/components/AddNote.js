@@ -1,6 +1,5 @@
 import React, {useContext, useState, useEffect} from 'react';
 import noteContext from '../context/notes/noteContext';
-import { Link } from 'react-router-dom';
 import {useHistory} from 'react-router-dom';
 
 const AddNote = (props) => {
@@ -23,9 +22,9 @@ const AddNote = (props) => {
         // console.log(json);
         if(!json.errors){
             props.showAlert("Added Note Successfully","success");
+            history.push("/");
         }else{
             props.showAlert(json.errors.msg?json.errors.msg:json.errors,"danger");
-            e.preventDefault();
         }
     }
     const handleChange = (e) => {
@@ -47,8 +46,8 @@ const AddNote = (props) => {
                     <label htmlFor="tag" className="form-label">Tag</label>
                     <input type="text" className="form-control" onChange={handleChange} id="tag" name="tag" value={newNote.tag} aria-describedby="tag"/>
                 </div>
-                <Link to="/" type="submit" className="btn btn-primary" onClick={handleSubmit}>Add Note</Link>
             </form>
+            <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Add Note</button>
         </div>
     )
 }

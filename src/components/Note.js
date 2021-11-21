@@ -30,7 +30,7 @@ const Note = (props) => {
     return (
         <div className="row my-3">
             <h2>Your Notes</h2>
-            <EditModal openModal={ref} currentNote={currentNote} setCurrentNote={setCurrentNote}  showAlert={props.showAlert} />
+            <EditModal openModal={ref} currentNote={currentNote} setCurrentNote={setCurrentNote}  showAlert={props.showAlert}/>
             {notes.map((note)=>(
                 <NoteItem key={note._id} updateNote={updateNote} note={note} showAlert={props.showAlert} />
             ))}
