@@ -9,6 +9,7 @@ const EditModal = (props) => {
     const handleSubmit = (e) => {
         editNote(currentNote.id,currentNote.etitle,currentNote.edescription,currentNote.etag);
         closeModal.current.click();
+        props.showAlert("Updated Note Successfully","success");
     }
     const handleChange = (e) => {
         setCurrentNote({...currentNote, [e.target.name]: e.target.value });

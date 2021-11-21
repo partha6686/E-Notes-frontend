@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {useHistory} from 'react-router-dom'
 
-const Login = () => {
+const Login = (props) => {
     const host = 'http://localhost:3300';
     const [user, setUser] = useState({
         email: '',
@@ -28,8 +28,10 @@ const Login = () => {
             localStorage.setItem('token', json.authToken);
             //Redirect
             history.push('/');
+            props.showAlert("Logged in Successfully","success");
         }else{
-            alert(json.errors);
+            props.showAlert(json.errors,"danger");
+            // alert(json.errors);
         }
     }
     const handleChange = (e) => {
@@ -37,8 +39,9 @@ const Login = () => {
     }
 
     return (
-        <div>
-            <form className="container col-md-6" onSubmit={handleSubmit} >
+        <div className="container col-md-6 my-3">
+            <h2 class="text-center my-3">Login</h2>
+            <form className="mt-3" onSubmit={handleSubmit} >
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email address</label>
                     <input type="email" className="form-control" id="email" name="email" value={user.email} onChange={handleChange} aria-describedby="emailHelp" />

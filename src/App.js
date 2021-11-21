@@ -20,19 +20,19 @@ function App() {
     setAlert({message, type});
     setTimeout(() => {
       setAlert(null)
-    }, 2000);
+    }, 3000);
   }
   return (
     <>
       <NoteState>
         <Router>
-          <Navbar />
-          <Alert message='This is a Alert Component' />
+          <Navbar showAlert={showAlert} />
+          <Alert alert={alert} />
           <div className="container">
             <Switch>
               <Route exact path="/"><Home showAlert={showAlert} /></Route>
               <Route exact path="/about"><About /></Route>
-              <Route exact path="/add-note"><AddNote /></Route>
+              <Route exact path="/add-note"><AddNote showAlert={showAlert} /></Route>
               <Route exact path="/signup"><SignUp showAlert={showAlert} /></Route>
               <Route exact path="/login"><Login showAlert={showAlert} /></Route>
             </Switch>

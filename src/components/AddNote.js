@@ -1,16 +1,26 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import noteContext from '../context/notes/noteContext';
 import { Link } from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 
-const AddNote = () => {
+const AddNote = (props) => {
     const {addNote} = useContext(noteContext);
     const [newNote, setNewNote] = useState({
         title:"",
         description: "",
         tag: ""
-    })
+    });
+    let history = useHistory();
+    useEffect(() => {
+        if(!localStorage.getItem('token')){
+            props.showAlert("Please Login to Continue","warning");
+            history.push("/login");
+        }
+        // eslint-disable-next-line
+    }, [])
     const handleSubmit = (e) => {
         addNote(newNote.title,newNote.description,newNote.tag===''?'default':newNote.tag);
+        props.showAlert("Added Note Successfully","success");
     }
     const handleChange = (e) => {
         setNewNote({...newNote, [e.target.name]: e.target.value });
