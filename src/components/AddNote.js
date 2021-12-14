@@ -1,9 +1,12 @@
-import React, {useContext, useState, useEffect} from 'react';
-import noteContext from '../context/notes/noteContext';
+import React, { useState, useEffect} from 'react';
+import { useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { notesMiddleware } from '../state/index';
 import {useHistory} from 'react-router-dom';
 
 const AddNote = (props) => {
-    const {addNote} = useContext(noteContext);
+    const dispatch = useDispatch();
+    const {addNewNote} = bindActionCreators(notesMiddleware,dispatch)
     const [newNote, setNewNote] = useState({
         title:"",
         description: "",
@@ -18,8 +21,7 @@ const AddNote = (props) => {
         // eslint-disable-next-line
     }, [])
     const handleSubmit = async (e) => {
-        const json = await addNote(newNote.title,newNote.description,newNote.tag===''?'default':newNote.tag);
-        // console.log(json);
+        const json = await addNewNote(newNote.title,newNote.description,newNote.tag===''?'default':newNote.tag);
         if(!json.errors){
             props.showAlert("Added Note Successfully","success");
             history.push("/");

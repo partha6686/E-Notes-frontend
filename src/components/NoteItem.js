@@ -1,8 +1,11 @@
-import React, {useContext} from 'react';
-import noteContext from '../context/notes/noteContext';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { notesMiddleware } from '../state/index';
 
 const NoteItem = (props) => {
-    const {deleteNote} = useContext(noteContext);
+    const dispatch = useDispatch();
+    const {deleteNote} = bindActionCreators(notesMiddleware,dispatch)
     const {note, updateNote} = props;
     const handleDelete = (id) => {
         deleteNote(id);

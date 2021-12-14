@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import About from "./components/About";
-import NoteState from './context/notes/NoteState';
 import { 
   BrowserRouter as Router, 
   Switch,
@@ -24,21 +23,19 @@ function App() {
   }
   return (
     <>
-      <NoteState>
-        <Router>
-          <Navbar showAlert={showAlert} />
-          <Alert alert={alert} />
-          <div className="container">
-            <Switch>
-              <Route exact path="/"><Home showAlert={showAlert} /></Route>
-              <Route exact path="/about"><About /></Route>
-              <Route exact path="/add-note"><AddNote showAlert={showAlert} /></Route>
-              <Route exact path="/signup"><SignUp showAlert={showAlert} /></Route>
-              <Route exact path="/login"><Login showAlert={showAlert} /></Route>
-            </Switch>
-          </div>
-        </Router>
-      </NoteState>
+      <Router>
+        <Navbar showAlert={showAlert} />
+        <Alert alert={alert} />
+        <div className="container">
+          <Switch>
+            <Route exact path="/"><Home showAlert={showAlert} /></Route>
+            <Route exact path="/about"><About /></Route>
+            <Route exact path="/add-note"><AddNote showAlert={showAlert} /></Route>
+            <Route exact path="/signup"><SignUp showAlert={showAlert} /></Route>
+            <Route exact path="/login"><Login showAlert={showAlert} /></Route>
+          </Switch>
+        </div>
+      </Router>
     </>
   );
 }

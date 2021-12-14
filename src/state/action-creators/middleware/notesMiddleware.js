@@ -41,7 +41,7 @@ export const addNewNote = (title, description, tag)=>{
 }
 
 //* DELETE A NOTE
-export const deleteNote = async (id)=>{
+export const deleteNote = (id)=>{
     const host = 'http://localhost:3300';
     //* API Calls to delete a Note
     return (async (dispatch)=>{
@@ -60,7 +60,7 @@ export const deleteNote = async (id)=>{
 }
 
 //* EDIT A NOTE
-export const editNote = async (id,title, description, tag)=>{
+export const editNote = (id,title, description, tag)=>{
     const host = 'http://localhost:3300';
     //* API Calls to fetch the note to be updated
     return (async (dispatch)=>{
@@ -75,8 +75,7 @@ export const editNote = async (id,title, description, tag)=>{
         });
         // eslint-disable-next-line
         const json = await response.json(); 
-        dispatch(updateNote(json));
+        dispatch(updateNote(json.note));
         return json;
     })
-    
 }

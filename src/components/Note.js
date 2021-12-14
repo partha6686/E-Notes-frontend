@@ -1,11 +1,15 @@
-import React, {useContext, useEffect, useRef, useState} from 'react';
-import noteContext from '../context/notes/noteContext';
+import React, {useEffect, useRef, useState} from 'react';
 import EditModal from './EditModal';
 import NoteItem from './NoteItem';
 import {useHistory} from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { notesMiddleware } from '../state/index';
 
 const Note = (props) => {
-    const {notes, fetchNotes} = useContext(noteContext);
+    const dispatch = useDispatch();
+    const {fetchNotes} = bindActionCreators(notesMiddleware,dispatch)
+    const notes = useSelector(state => state.notes)
     let history = useHistory();
     const [currentNote, setCurrentNote] = useState({
         id: '',
