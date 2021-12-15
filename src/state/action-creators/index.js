@@ -30,3 +30,12 @@ export const updateNote = (note)=>{
         })
     }
 }
+
+export const setAlert = (alert) =>{
+    return (dispatch) => {
+        dispatch({
+            type: 'SHOW_ALERT',
+            payload: alert
+        })
+    }
+}

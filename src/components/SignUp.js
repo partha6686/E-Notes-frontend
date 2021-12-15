@@ -1,7 +1,10 @@
 import React, {useState} from 'react';
 import {useHistory} from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { alertMiddleware } from '../state/index';
 
-const SignUp = (props) => {
+const SignUp = () => {
     const host = 'http://localhost:3300';
     const [createUser, setCreateUser] = useState({
         name: '',
@@ -10,6 +13,8 @@ const SignUp = (props) => {
         cpassword: ''
     });
     let history = useHistory();
+    const dispatch = useDispatch();
+    const {showAlert} = bindActionCreators(alertMiddleware,dispatch)
     const handleChange = (e)=>{
         setCreateUser({...createUser, [e.target.name]: e.target.value })
     }
@@ -34,9 +39,9 @@ const SignUp = (props) => {
             localStorage.setItem('token', json.authToken);
             //Redirect
             history.push('/');
-            props.showAlert("Sign up Successful","success");
+            showAlert("Sign up Successful","success");
         }else{
-            props.showAlert(json.errors.msg?json.errors.msg:json.errors,"danger");
+            showAlert(json.errors.msg?json.errors.msg:json.errors,"danger");
         }
     }
     return (

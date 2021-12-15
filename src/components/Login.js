@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import {useHistory} from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { alertMiddleware } from '../state/index';
 
-const Login = (props) => {
+const Login = () => {
     const host = 'http://localhost:3300';
     const [user, setUser] = useState({
         email: '',
         password: ''
     });
     let history = useHistory();
+    const dispatch = useDispatch();
+    const {showAlert} = bindActionCreators(alertMiddleware,dispatch)
     const handleSubmit = async (e) => {
         e.preventDefault();
         const url = `${host}/api/auth/login`;
@@ -28,9 +33,9 @@ const Login = (props) => {
             localStorage.setItem('token', json.authToken);
             //Redirect
             history.push('/');
-            props.showAlert("Logged in Successfully","success");
+            showAlert("Logged in Successfully","success");
         }else{
-            props.showAlert(json.errors.msg?json.errors.msg:json.errors,"danger");
+            showAlert(json.errors.msg?json.errors.msg:json.errors,"danger");
             // alert(json.errors);
         }
     }

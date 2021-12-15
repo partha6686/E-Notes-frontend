@@ -2,17 +2,18 @@ import React, { useRef} from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { notesMiddleware } from '../state/index';
+import { notesMiddleware, alertMiddleware } from '../state/index';
 
 const EditModal = (props) => {
     const {openModal, currentNote, setCurrentNote} = props;
     const dispatch = useDispatch();
     const {editNote} = bindActionCreators(notesMiddleware,dispatch)
+    const {showAlert} = bindActionCreators(alertMiddleware,dispatch)
     const closeModal = useRef(null);
     const handleSubmit = async (e) => {
         await editNote(currentNote.id,currentNote.etitle,currentNote.edescription,currentNote.etag);
         closeModal.current.click();
-        props.showAlert("Updated Note Successfully","success");
+        showAlert("Updated Note Successfully","success");
     }
     const handleChange = (e) => {
         setCurrentNote({...currentNote, [e.target.name]: e.target.value });

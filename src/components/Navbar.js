@@ -1,12 +1,17 @@
 import React from 'react';
 import { Link, useLocation, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { alertMiddleware } from '../state/index';
 
-const Navbar = (props) => {
+const Navbar = () => {
     let location = useLocation();
     let history = useHistory();
+    const dispatch = useDispatch();
+    const {showAlert} = bindActionCreators(alertMiddleware,dispatch)
     const handleLogout = () => {
         localStorage.removeItem('token');
-        props.showAlert("Logged out Successfully","success");
+        showAlert("Logged out Successfully","success");
         history.push("/login"); 
     }
     return (
@@ -35,6 +40,7 @@ const Navbar = (props) => {
                     </form>:
                     <form>
                         <button onClick={handleLogout} className="btn btn-danger mx-2" >Logout</button>
+                        <Link to="/profile" className="btn btn-danger mx-2">Profile</Link>
                     </form>
                     }
                 </div>

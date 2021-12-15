@@ -4,11 +4,12 @@ import NoteItem from './NoteItem';
 import {useHistory} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { notesMiddleware } from '../state/index';
+import { notesMiddleware, alertMiddleware } from '../state/index';
 
 const Note = (props) => {
     const dispatch = useDispatch();
     const {fetchNotes} = bindActionCreators(notesMiddleware,dispatch)
+    const {showAlert} = bindActionCreators(alertMiddleware,dispatch)
     const notes = useSelector(state => state.notes)
     let history = useHistory();
     const [currentNote, setCurrentNote] = useState({
@@ -22,7 +23,7 @@ const Note = (props) => {
         if(localStorage.getItem('token')){
             fetchNotes();
         }else{
-            props.showAlert("Please Login to Continue","warning");
+            showAlert("Please Login to Continue","warning");
             history.push("/login");
         }
         // eslint-disable-next-line
@@ -34,9 +35,9 @@ const Note = (props) => {
     return (
         <div className="row my-3">
             <h2>Your Notes</h2>
-            <EditModal openModal={ref} currentNote={currentNote} setCurrentNote={setCurrentNote}  showAlert={props.showAlert}/>
+            <EditModal openModal={ref} currentNote={currentNote} setCurrentNote={setCurrentNote} />
             {notes.map((note)=>(
-                <NoteItem key={note._id} updateNote={updateNote} note={note} showAlert={props.showAlert} />
+                <NoteItem key={note._id} updateNote={updateNote} note={note} />
             ))}
         </div>
     )

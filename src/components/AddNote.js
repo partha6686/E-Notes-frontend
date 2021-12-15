@@ -1,12 +1,14 @@
 import React, { useState, useEffect} from 'react';
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { notesMiddleware } from '../state/index';
+import { notesMiddleware, alertMiddleware } from '../state/index';
 import {useHistory} from 'react-router-dom';
 
-const AddNote = (props) => {
+
+const AddNote = () => {
     const dispatch = useDispatch();
     const {addNewNote} = bindActionCreators(notesMiddleware,dispatch)
+    const {showAlert} = bindActionCreators(alertMiddleware,dispatch)
     const [newNote, setNewNote] = useState({
         title:"",
         description: "",
@@ -15,7 +17,7 @@ const AddNote = (props) => {
     let history = useHistory();
     useEffect(() => {
         if(!localStorage.getItem('token')){
-            props.showAlert("Please Login to Continue","warning");
+            showAlert("Please Login to Continue","warning");
             history.push("/login");
         }
         // eslint-disable-next-line
@@ -23,10 +25,10 @@ const AddNote = (props) => {
     const handleSubmit = async (e) => {
         const json = await addNewNote(newNote.title,newNote.description,newNote.tag===''?'default':newNote.tag);
         if(!json.errors){
-            props.showAlert("Added Note Successfully","success");
+            showAlert("Added Note Successfully","success");
             history.push("/");
         }else{
-            props.showAlert(json.errors.msg?json.errors.msg:json.errors,"danger");
+            showAlert(json.errors.msg?json.errors.msg:json.errors,"danger");
         }
     }
     const handleChange = (e) => {

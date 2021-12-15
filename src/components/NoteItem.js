@@ -1,15 +1,16 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { notesMiddleware } from '../state/index';
+import { notesMiddleware, alertMiddleware } from '../state/index';
 
 const NoteItem = (props) => {
     const dispatch = useDispatch();
     const {deleteNote} = bindActionCreators(notesMiddleware,dispatch)
+    const {showAlert} = bindActionCreators(alertMiddleware,dispatch)
     const {note, updateNote} = props;
     const handleDelete = (id) => {
         deleteNote(id);
-        props.showAlert("Deleted Note Successfully","success");
+        showAlert("Deleted Note Successfully","success");
     }
     return (
         <div className="col-md-3">
