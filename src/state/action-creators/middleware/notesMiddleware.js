@@ -1,16 +1,29 @@
-import {setNotes, addNote, removeNote, updateNote} from '../index';
+import {setNotes, addNote, removeNote, updateNote, setUserNotes} from '../index';
 
-//* FETCH ALL NOTES
-export const fetchNotes = () => {
+//* FETCH NOTES OF A SPECIFIC USER
+export const fetchUserNotes = ()=>{
     const host = 'http://localhost:3300';
     return (async (dispatch)=>{
-        const url = `${host}/api/notes/all`;
+        const url = `${host}/api/notes/user`;
         const response = await fetch(url, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'auth-token': localStorage.getItem('token')
-            }
+            } 
+        });
+        const json = await response.json(); 
+        dispatch(setUserNotes(json)); 
+    })
+}
+
+//* FETCH ALL PUBLIC NOTES
+export const fetchNotes = () => {
+    const host = 'http://localhost:3300';
+    return (async (dispatch)=>{
+        const url = `${host}/api/notes/`;
+        const response = await fetch(url, {
+            method: 'GET',
         });
         const json = await response.json(); 
         dispatch(setNotes(json)); 

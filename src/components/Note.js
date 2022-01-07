@@ -8,7 +8,7 @@ import { notesMiddleware, alertMiddleware } from '../state/index';
 
 const Note = (props) => {
     const dispatch = useDispatch();
-    const {fetchNotes} = bindActionCreators(notesMiddleware,dispatch)
+    const {fetchUserNotes} = bindActionCreators(notesMiddleware,dispatch)
     const {showAlert} = bindActionCreators(alertMiddleware,dispatch)
     const notes = useSelector(state => state.notes)
     let history = useHistory();
@@ -21,7 +21,7 @@ const Note = (props) => {
     const ref = useRef(null)
     useEffect(() => {
         if(localStorage.getItem('token')){
-            fetchNotes();
+            fetchUserNotes();
         }else{
             showAlert("Please Login to Continue","warning");
             history.push("/login");
@@ -34,7 +34,6 @@ const Note = (props) => {
     }
     return (
         <div className="row my-3">
-            <h2>Your Notes</h2>
             <EditModal openModal={ref} currentNote={currentNote} setCurrentNote={setCurrentNote} />
             {notes.map((note)=>(
                 <NoteItem key={note._id} updateNote={updateNote} note={note} />

@@ -17,6 +17,8 @@ const reducer = (state=[], action) =>{
                 }
             });
             return newNotes;
+        case 'SET_USER_NOTES':
+            return action.payload;
         default:
             return state;
     }

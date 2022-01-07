@@ -6,6 +6,14 @@ export const setNotes = (notes)=>{
         })
     }
 }
+export const setUserNotes = (notes)=>{
+    return (dispatch) => {
+        dispatch({
+            type: 'SET_USER_NOTES',
+            payload: notes
+        })
+    }
+}
 export const addNote = (note)=>{
     return (dispatch) => {
         dispatch({
@@ -36,6 +44,15 @@ export const setAlert = (alert) =>{
         dispatch({
             type: 'SHOW_ALERT',
             payload: alert
+        })
+    }
+}
+
+export const setUser = (user) =>{
+    return (dispatch) => {
+        dispatch({
+            type: 'SET_USER',
+            payload: user
         })
     }
 }

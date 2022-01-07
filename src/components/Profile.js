@@ -1,9 +1,13 @@
 import React from 'react'
+import Note from './Note';
+import ProfileHero from './ProfileHero';
+import '../css/profile.css'
 
 const Profile = () => {
     return (
         <div>
-            <h2>My Profile</h2>
+            <ProfileHero />
+            <Note />
         </div>
     )
 }
