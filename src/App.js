@@ -15,17 +15,18 @@ import Profile from './components/Profile';
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { alertMiddleware } from './state/index';
+import './css/App.css';
 
 
 function App() {
   const dispatch = useDispatch();
   const {showAlert} = bindActionCreators(alertMiddleware,dispatch)
   return (
-    <>
+    <div className='app'>
       <Router>
         <Navbar />
         <Alert />
-        <div className="container">
+        <div className="hero-box">
           <Switch>
             <Route exact path="/"><Home showAlert={showAlert} /></Route>
             <Route exact path="/about"><About /></Route>
@@ -36,7 +37,7 @@ function App() {
           </Switch>
         </div>
       </Router>
-    </>
+    </div>
   );
 }
 

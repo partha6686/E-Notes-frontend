@@ -33,7 +33,7 @@ const Note = (props) => {
         setCurrentNote({id:note._id, etitle: note.title, edescription: note.description, etag: note.tag});   
     }
     return (
-        <div className="row my-3">
+        <div className="profile-notes">
             <EditModal openModal={ref} currentNote={currentNote} setCurrentNote={setCurrentNote} />
             {notes.map((note)=>(
                 <NoteItem key={note._id} updateNote={updateNote} note={note} />

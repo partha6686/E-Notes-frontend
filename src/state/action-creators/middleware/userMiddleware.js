@@ -1,4 +1,4 @@
-import { setUser } from "..";
+import { setUser, editUser } from "..";
 
 // FETCH USER DETAILS
 export const fetchUser = ()=>{
@@ -14,5 +14,23 @@ export const fetchUser = ()=>{
         });
         const json = await response.json(); 
         dispatch(setUser(json)); 
+    })
+}
+
+//EDIT USER DETAILS
+export const editUserDetails = (details)=>{
+    const host = 'http://localhost:3300'
+    return (async (dispatch)=>{
+        const url = `${host}/api/profile/edit`;
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': localStorage.getItem('token')
+            },
+            body: JSON.stringify(details)
+        });
+        const json = await response.json(); 
+        dispatch(editUser(json)); 
     })
 }

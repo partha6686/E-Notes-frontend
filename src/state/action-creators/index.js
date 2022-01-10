@@ -56,3 +56,11 @@ export const setUser = (user) =>{
         })
     }
 }
+export const editUser = (details)=>{
+    return (dispatch) => {
+        dispatch({
+            type: 'EDIT_USER',
+            payload: details
+        })
+    }
+}

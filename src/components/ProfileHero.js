@@ -23,15 +23,19 @@ const ProfileHero = () => {
         }
         // eslint-disable-next-line
     }, [])
-    // console.log(user);
     return (
         <div className='profile-hero'>
             <div className='profile-img'>
                 <img src={`${host}${user.profileImg}`} alt='profile'/>
             </div>
             <div className='profile-info'>
-                <button className='btn btn-primary'>Edit Profile</button>
                 <h1>{user.name}</h1>
+                <button className='button-outline'>Edit Profile</button>
+                <div>
+                    <span><b>0 </b> BLOGS</span>
+                    <span><b>0 </b> FOLLOWERS</span>
+                    <span><b>0 </b> FOLLOWING</span>
+                </div>
                 <p>{user.bio}</p>
             </div>
         </div>

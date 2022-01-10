@@ -1,0 +1,60 @@
+body{
+    overflow: hidden;
+}
+.app{
+    background-color: #2b3945;
+    width: 100vw;
+    min-height: 100vh;
+}
+.hero-box{
+    width: 60vw;
+    max-width: 1200px;
+    min-width: 320px;
+    margin: 0 auto;
+}
+
+/* Button */
+.button-outline{
+    background-color: #202c37;
+    border: 2px solid #29a0d3;
+    color: #29a0d3;
+    font-weight: 500;
+    padding: 6px 18px;
+    border-radius: 30px;
+}
+.button-outline:hover{
+    background-color: #29a0d3;
+    color: #202c37;
+}
+.button-fill{
+    border: none;
+    background-color: #29a0d3;
+    color: #202c37;
+    font-weight: 500;
+    padding: 6px 18px;
+    border-radius: 30px;
+}
+.button-fill:hover{
+    background-image: linear-gradient(to right, #29A0D3, #c058f3);
+}
+
+/* Modal */
+.modal-content{
+    background-color: #202c37;
+    color: #dbdbdb;
+    border-radius: 1rem;
+}
+.modal-content textarea,.modal-content input,.modal-content select{
+    background-color: #2b3945;
+    border-color: #202c37;
+    color: #dbdbdb;
+    /* -webkit-appearance: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent; */
+}
+textarea{
+    height: 100px;
+}
+.modal-content .modal-header{
+    border-bottom: 3px solid #2b3945;
+}
