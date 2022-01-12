@@ -64,3 +64,11 @@ export const editUser = (details)=>{
         })
     }
 }
+export const editProfilePic = (picUrl)=>{
+    return (dispatch) => {
+        dispatch({
+            type: 'EDIT_PROFILE_PIC',
+            payload: picUrl
+        })
+    }
+}
