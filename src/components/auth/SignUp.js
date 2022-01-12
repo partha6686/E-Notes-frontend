@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { alertMiddleware } from '../state/index';
+import { alertMiddleware } from '../../state/index';
 
 const SignUp = () => {
     const host = 'http://localhost:3300';

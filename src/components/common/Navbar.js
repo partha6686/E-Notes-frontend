@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { alertMiddleware } from '../state/index';
+import { alertMiddleware } from '../../state/index';
 
 const Navbar = () => {
     let location = useLocation();

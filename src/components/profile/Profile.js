@@ -1,7 +1,7 @@
 import React from 'react'
-import Note from './Note';
+import Note from '../Note';
 import ProfileHero from './ProfileHero';
-import '../css/profile.css'
+import '../../css/profile.css'
 import ProfileInfo from './ProfileInfo';
 
 const Profile = () => {

@@ -2,7 +2,7 @@ import React from "react";
 import { Form, Modal } from "react-bootstrap";
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { userMiddleware, alertMiddleware } from '../state/index';
+import { userMiddleware, alertMiddleware } from '../../state/index';
 
 const EditProfileDetails = (props) => {
   const { show, handleClose, user, setUser } = props;

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { userMiddleware, alertMiddleware } from '../state/index';
+import { userMiddleware, alertMiddleware } from '../../state/index';
 import EditProfilePic from './EditProfilePic';
 
 const ProfileHero = () => {

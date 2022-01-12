@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from "./components/Navbar";
+import Navbar from "./components/common/Navbar";
 import Home from "./components/Home";
 import About from "./components/About";
 import { 
@@ -7,11 +7,11 @@ import {
   Switch,
   Route 
 } from "react-router-dom";
-import Alert from './components/Alert';
+import Alert from './components/common/Alert';
 import AddNote from './components/AddNote';
-import SignUp from './components/SignUp';
-import Login from './components/Login';
-import Profile from './components/Profile';
+import SignUp from './components/auth/SignUp';
+import Login from './components/auth/Login';
+import Profile from './components/profile/Profile';
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { alertMiddleware } from './state/index';
