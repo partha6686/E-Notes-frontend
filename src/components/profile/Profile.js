@@ -1,5 +1,5 @@
 import React from 'react'
-import Note from '../Note';
+import Note from '../blog/Note';
 import ProfileHero from './ProfileHero';
 import '../../css/profile.css'
 import ProfileInfo from './ProfileInfo';

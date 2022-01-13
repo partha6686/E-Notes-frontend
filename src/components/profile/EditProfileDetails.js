@@ -11,11 +11,11 @@ const EditProfileDetails = (props) => {
   const {showAlert} = bindActionCreators(alertMiddleware,dispatch)
   
   const handleChange=(e)=>{
-    console.log(e);
     setUser({...user, [e.target.name]: e.target.value});
   }
   const handleSubmit=async (e)=>{
     e.preventDefault();
+    console.log(user);
     await editUserDetails(user);
     showAlert("Updated Profile Successfully","success");
   }
@@ -41,7 +41,8 @@ const EditProfileDetails = (props) => {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Gender</Form.Label>
-              <Form.Select name="gender" onChange={handleChange} defaultValue={user.gender}>
+              <Form.Select name="gender" onChange={handleChange} defaultValue={user.gender ? user.gender : "default"}>
+                <option disabled value="default" >Select Here..</option>
                 <option value="M" >Male</option>
                 <option value="F" >Female</option>
                 <option value="NA" >Prefer not to say</option>
