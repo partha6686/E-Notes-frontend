@@ -22,10 +22,11 @@
     flex: 100%;
     color: var(--light_text);
 }
-.auth input:focus{
-    outline: none!important;
-    border: none;
-    background-color: var(--dark);
+
+/********Remove EYE button from Edge browser ***********/
+.auth input[type="password"]::-ms-reveal,
+.auth input[type="password"]::-ms-clear {
+  display: none;
 }
 .auth .icon, .auth .pass-icon{
     position: relative;

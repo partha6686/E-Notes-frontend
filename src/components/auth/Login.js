@@ -3,7 +3,7 @@ import "../../css/auth.css";
 import UnderLine from "../common/UnderLine";
 import { HiOutlineMail } from "react-icons/hi";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { AiOutlineEye } from "react-icons/ai";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { BiErrorCircle } from "react-icons/bi";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -17,10 +17,12 @@ const Login = () => {
     email: "",
     password: "",
   });
+  const [showPassword, setShowPassword] = useState(false);
   let history = useHistory();
   const dispatch = useDispatch();
   const { showAlert } = bindActionCreators(alertMiddleware, dispatch);
 
+  /******************************************************************************************************************************************/
   const formValidator = () => {
     if (
       !/[a-zA-Z0-9]+[\.]?([a-zA-Z0-9]+)?[\@][a-z]{3,9}[\.][a-z]{2,5}/g.test(
@@ -33,6 +35,7 @@ const Login = () => {
     }
   };
 
+  /*****************************************************************************************************************************************/
   const handleSubmit = async (e) => {
     e.preventDefault();
     formValidator();
@@ -61,16 +64,21 @@ const Login = () => {
       }
     }
   };
+
+  /*****************************************************************************************************************************************/
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
     formValidator();
   };
 
+  /*****************************************************************************************************************************************/
+
+
   return (
     <div className="auth">
       <h2>Login</h2>
       <UnderLine />
-      <form autoComplete="off" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div style={{ position: "relative" }}>
           <div className="input-div">
             <HiOutlineMail size="22px" className="icon" />
@@ -98,13 +106,13 @@ const Login = () => {
         <div className="input-div">
           <RiLockPasswordLine size="22px" className="icon" />
           <input
-            type="password"
+            type={!showPassword ?"password": "text"}
             name="password"
             placeholder="Enter Password"
             value={user.password}
             onChange={handleChange}
           />
-          <AiOutlineEye size="22px" className="pass-icon" />
+          {!showPassword ? <AiOutlineEye size="22px" className="pass-icon" onClick={()=>{setShowPassword(!showPassword) }} />: <AiOutlineEyeInvisible size="22px" className="pass-icon" onClick={()=>{setShowPassword(!showPassword) }} /> }
           <br />
         </div>
         <div className="btn-div">

@@ -3,9 +3,10 @@ import "../../css/auth.css";
 import UnderLine from "../common/UnderLine";
 import { HiOutlineMail } from "react-icons/hi";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { AiOutlineEye } from "react-icons/ai";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { FaRegUser } from "react-icons/fa";
 import { BiErrorCircle } from "react-icons/bi";
+import {BsArrowCounterclockwise} from "react-icons/bs";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -20,13 +21,16 @@ const SignUp = () => {
     password: "",
     cpassword: "",
   });
+  const [showPassword, setShowPassword] = useState(false);
   let history = useHistory();
   const dispatch = useDispatch();
   const { showAlert } = bindActionCreators(alertMiddleware, dispatch);
   const formValidator = () => {
     if (
       createUser.name.length < 3 ||
-      !/[a-zA-Z0-9]+[\.]?([a-zA-Z0-9]+)?[\@][a-z]{3,9}[\.][a-z]{2,5}/g.test(createUser.email) ||
+      !/[a-zA-Z0-9]+[\.]?([a-zA-Z0-9]+)?[\@][a-z]{3,9}[\.][a-z]{2,5}/g.test(
+        createUser.email
+      ) ||
       createUser.password.length < 5 ||
       createUser.cpassword !== createUser.password
     ) {
@@ -75,7 +79,7 @@ const SignUp = () => {
     <div className="auth">
       <h2>Sign up</h2>
       <UnderLine />
-      <form autoComplete="off" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div style={{ position: "relative" }}>
           <div className="input-div">
             <FaRegUser size="20px" className="icon" />
@@ -121,12 +125,28 @@ const SignUp = () => {
           <div className="input-div">
             <RiLockPasswordLine size="22px" className="icon" />
             <input
-              type="password"
+            type={!showPassword ?"password": "text"}
               name="password"
               placeholder="Enter Password"
               onChange={handleChange}
             />
-            <AiOutlineEye size="22px" className="pass-icon" />
+            {!showPassword ? (
+              <AiOutlineEye
+                size="22px"
+                className="pass-icon"
+                onClick={() => {
+                  setShowPassword(!showPassword);
+                }}
+              />
+            ) : (
+              <AiOutlineEyeInvisible
+                size="22px"
+                className="pass-icon"
+                onClick={() => {
+                  setShowPassword(!showPassword);
+                }}
+              />
+            )}
             <br />
           </div>
           {createUser.password.length && createUser.password.length < 5 ? (
@@ -140,7 +160,7 @@ const SignUp = () => {
         </div>
         <div style={{ position: "relative" }}>
           <div className="input-div">
-            <RiLockPasswordLine size="22px" className="icon" />
+            <BsArrowCounterclockwise size="22px" className="icon" />
             <input
               type="password"
               name="cpassword"

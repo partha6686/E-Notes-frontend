@@ -20,7 +20,23 @@
     padding-bottom: 3rem;
 }
 
-/* Button */
+/******************************* Removing and adding browsers default styles [V.IMP] ******************************************/
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px var(--dark) inset !important;
+}
+input:-webkit-autofill{
+    -webkit-text-fill-color: var(--light_text) !important;
+}
+input:focus{
+    outline: none!important;
+    border: none;
+    background-color: var(--dark);
+}
+
+/**************************************************** Button ******************************************/
 .button-outline{
     background-color: var(--dark);
     border: 2px solid var(--bright);
@@ -45,7 +61,7 @@
     background-image: linear-gradient(to right, var(--bright), #c058f3);
 }
 
-/* Modal */
+/************************************************** Modal *****************************************************/
 .modal-content{
     background-color: var(--dark);
     color: var(--light_text);
@@ -63,7 +79,7 @@ textarea{
     border-bottom: 3px solid var(--light);
 }
 
-/*  MEDIA QUERRIES  */
+/************************************************  MEDIA QUERRIES  ****************************************************/
 @media (max-width: 1240px) {
     .hero-box{
         width: 80vw;
