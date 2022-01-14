@@ -1,64 +1,126 @@
-import React, { useState } from 'react';
-import {useHistory} from 'react-router-dom'
-import { useDispatch } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { alertMiddleware } from '../../state/index';
+import React, { useState } from "react";
+import "../../css/auth.css";
+import UnderLine from "../common/UnderLine";
+import { HiOutlineMail } from "react-icons/hi";
+import { RiLockPasswordLine } from "react-icons/ri";
+import { AiOutlineEye } from "react-icons/ai";
+import { BiErrorCircle } from "react-icons/bi";
+import { Link, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
+import { alertMiddleware } from "../../state/index";
 
 const Login = () => {
-    const host = 'http://localhost:3300';
-    const [user, setUser] = useState({
-        email: '',
-        password: ''
-    });
-    let history = useHistory();
-    const dispatch = useDispatch();
-    const {showAlert} = bindActionCreators(alertMiddleware,dispatch)
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const url = `${host}/api/auth/login`;
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email: user.email,
-                password: user.password
-            }) 
-        });
-        // eslint-disable-next-line
-        const json = await response.json();
-        console.log(json);
-        if(response.status === 200){
-            localStorage.setItem('token', json.authToken);
-            //Redirect
-            history.push('/');
-            showAlert("Logged in Successfully","success");
-        }else{
-            showAlert(json.errors.msg?json.errors.msg:json.errors,"danger");
-            // alert(json.errors);
-        }
-    }
-    const handleChange = (e) => {
-        setUser({...user, [e.target.name]: e.target.value });
-    }
+  const host = "http://localhost:3300";
+  const [error, setError] = useState();
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+  let history = useHistory();
+  const dispatch = useDispatch();
+  const { showAlert } = bindActionCreators(alertMiddleware, dispatch);
 
-    return (
-        <div className="container col-md-6 my-3">
-            <h2 className="text-center my-3">Login</h2>
-            <form className="mt-3" onSubmit={handleSubmit} >
-                <div className="mb-3">
-                    <label htmlFor="email" className="form-label">Email address</label>
-                    <input type="email" className="form-control" id="email" name="email" value={user.email} onChange={handleChange} aria-describedby="emailHelp" />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="password" className="form-label">Password</label>
-                    <input type="password" className="form-control" id="password" name="password" value={user.password} onChange={handleChange} />
-                </div>
-                <button type="submit" className="btn btn-primary" >Login</button>
-            </form>
-        </div> 
-    )
-}
+  const formValidator = () => {
+    if (
+      !/[a-zA-Z0-9]+[\.]?([a-zA-Z0-9]+)?[\@][a-z]{3,9}[\.][a-z]{2,5}/g.test(
+        user.email
+      )
+    ) {
+      setError(true);
+    } else {
+      setError(false);
+    }
+  };
 
-export default Login
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    formValidator();
+    if (!error) {
+      const url = `${host}/api/auth/login`;
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: await JSON.stringify({
+          email: user.email,
+          password: user.password,
+        }),
+      });
+      // eslint-disable-next-line
+      const json = await response.json();
+      console.log(json);
+      if (response.status === 200) {
+        localStorage.setItem("token", json.authToken);
+        //Redirect
+        history.push("/");
+        showAlert("Logged in Successfully", "success");
+      } else {
+        showAlert(json.errors.msg ? json.errors.msg : json.errors, "danger");
+      }
+    }
+  };
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+    formValidator();
+  };
+
+  return (
+    <div className="auth">
+      <h2>Login</h2>
+      <UnderLine />
+      <form autoComplete="off" onSubmit={handleSubmit}>
+        <div style={{ position: "relative" }}>
+          <div className="input-div">
+            <HiOutlineMail size="22px" className="icon" />
+            <input
+              type="text"
+              name="email"
+              placeholder="Enter Email"
+              vlaue={user.email}
+              onChange={handleChange}
+            />
+            <br />
+          </div>
+
+          {user.email &&
+          /[a-zA-Z0-9]+[\.]?([a-zA-Z0-9]+)?[\@][a-z]{3,9}[\.][a-z]{2,5}/g.test(
+            user.email
+          ) === false ? (
+            <p className="input-error">
+              <BiErrorCircle size="18px" /> Enter a Valid email address
+            </p>
+          ) : (
+            <p></p>
+          )}
+        </div>
+        <div className="input-div">
+          <RiLockPasswordLine size="22px" className="icon" />
+          <input
+            type="password"
+            name="password"
+            placeholder="Enter Password"
+            value={user.password}
+            onChange={handleChange}
+          />
+          <AiOutlineEye size="22px" className="pass-icon" />
+          <br />
+        </div>
+        <div className="btn-div">
+          <button className="button-fill">Login</button>
+        </div>
+      </form>
+      <div className="btn-div">
+        <hr />
+        <span>OR</span>
+        <p>Don't have an account?</p>
+        <Link to="/auth/signup">
+          <button className="button-outline">Sign up</button>
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+export default Login;

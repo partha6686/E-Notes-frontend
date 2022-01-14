@@ -35,8 +35,8 @@ const Navbar = () => {
                     </ul>
                     {!localStorage.getItem('token') ?
                     <form>
-                        <Link className="btn btn-outline-danger mx-2" to='/login' >Login</Link>
-                        <Link className="btn btn-danger mx-2" to='/signup' >Signup</Link>
+                        <Link className="btn btn-outline-danger mx-2" to='/auth/login' >Login</Link>
+                        <Link className="btn btn-danger mx-2" to='/auth/signup' >Signup</Link>
                     </form>:
                     <form>
                         <button onClick={handleLogout} className="btn btn-danger mx-2" >Logout</button>

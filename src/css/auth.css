@@ -20,7 +20,6 @@
     margin: auto 0;
     padding: 8px;
     flex: 100%;
-    /* width: 92%; */
     color: var(--light_text);
 }
 .auth input:focus{
@@ -30,15 +29,12 @@
 }
 .auth .icon, .auth .pass-icon{
     position: relative;
-    top: 12px;
+    top: 10px;
     color: var(--bright);
 }
 .pass-icon{
     cursor: pointer;
 }
-/* .auth .input-div.password input{
-    width: 85%;
-} */
 .auth .button-outline ,.auth .button-fill{
     width: 100%;
     margin: 1rem 0;
@@ -62,6 +58,14 @@
     margin: auto;
     top: -14px;
 }
+.auth .input-error{
+    color: rgba(255, 0, 0, 0.849);
+    position: absolute;
+    bottom: -24px;
+    margin: 0 24px;
+    font-size: 14px;
+
+}
 
 /*  MEDIA QUERRIES  */
 @media (max-width: 450px) {
@@ -71,6 +75,9 @@
     .auth .input-div, .auth .btn-div{
         margin: 24px 10px;
         position: relative;
+    }
+    .auth .input-error{
+        margin: 0 10px;
     }
 }
 @media (max-width: 380px){
@@ -89,5 +96,8 @@
     .auth .input-div, .auth .btn-div{
         margin: 24px 6px;
         position: relative;
+    }
+    .auth .input-error{
+        margin: 0 6px;
     }
 }
