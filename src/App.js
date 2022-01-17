@@ -1,5 +1,5 @@
-import React from 'react';
-import Navbar from "./components/common/Navbar";
+import React, {useEffect} from 'react';
+import Nav from "./components/common/Nav";
 import Home from "./components/blog/Home";
 import About from "./components/About";
 import { 
@@ -24,9 +24,9 @@ function App() {
   return (
     <div className='app'>
       <Router>
-        <Navbar />
-        <Alert />
+        <Nav />
         <div className="hero-box">
+          <Alert />
           <Switch>
             <Route exact path="/"><Home showAlert={showAlert} /></Route>
             <Route exact path="/about"><About /></Route>

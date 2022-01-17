@@ -23,7 +23,6 @@ const EditProfilePic = (props) => {
         const data = new FormData();
         data.append('profilePicture',file);
         
-        
         await updateProfilePic(data);
         showAlert("Updated Profile Picture Successfully","success");
     }

@@ -10,7 +10,7 @@ import {BsArrowCounterclockwise} from "react-icons/bs";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
-import { alertMiddleware } from "../../state/index";
+import { alertMiddleware, userMiddleware } from "../../state/index";
 
 const SignUp = () => {
   const host = "http://localhost:3300";
@@ -25,6 +25,8 @@ const SignUp = () => {
   let history = useHistory();
   const dispatch = useDispatch();
   const { showAlert } = bindActionCreators(alertMiddleware, dispatch);
+  const {fetchUser} = bindActionCreators(userMiddleware,dispatch);
+
   const formValidator = () => {
     if (
       createUser.name.length < 3 ||
@@ -65,7 +67,8 @@ const SignUp = () => {
       const json = await response.json();
       console.log(json);
       if (response.status === 200) {
-        localStorage.setItem("token", json.authToken);
+        await localStorage.setItem("token", json.authToken);
+        fetchUser();
         //Redirect
         history.push("/profile");
         showAlert("Sign up Successful", "success");

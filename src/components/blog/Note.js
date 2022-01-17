@@ -16,7 +16,8 @@ const Note = (props) => {
         id: '',
         etitle: '',
         edescription: '',
-        etag: 'default'
+        etag: 'default',
+        estatus: ''
     })
     const ref = useRef(null)
     useEffect(() => {
@@ -30,7 +31,7 @@ const Note = (props) => {
     }, [])
     const updateNote = (note)=>{
         ref.current.click();
-        setCurrentNote({id:note._id, etitle: note.title, edescription: note.description, etag: note.tag});   
+        setCurrentNote({id:note._id, etitle: note.title, edescription: note.description, etag: note.tag, estatus: note.status});   
     }
     return (
         <div className="profile-notes">

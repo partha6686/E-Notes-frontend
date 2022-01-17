@@ -2,22 +2,29 @@
     --dark: #202c37;
     --light: #2b3945;
     --bright: #29a0d3;
-    --light_text: #dbdbdb;
+    --light_text: hsl(0, 0%, 86%);
 }
+*{
+    margin: 0;
+    padding: 0;
+    /* font-family: sans-serif; */
 
+}
 .app{
     background-color: var(--light);
     width: 100%;
     min-height: 100vh;
     background-image: url(../images/bg-stars.svg);
     color: var(--light_text);
+    padding-top: 22px;
+    /* overflow-x: hidden; */
 }
 .hero-box{
     width: 60vw;
     max-width: 1200px;
     min-width: 990px;
     margin: 0 auto;
-    padding-bottom: 3rem;
+    padding: 10rem auto !important;
 }
 
 /******************************* Removing and adding browsers default styles [V.IMP] ******************************************/
@@ -26,6 +33,7 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus, 
 input:-webkit-autofill:active{
     -webkit-box-shadow: 0 0 0 30px var(--dark) inset !important;
+    box-shadow: 0 0 0 30px var(--dark) inset !important;
 }
 input:-webkit-autofill{
     -webkit-text-fill-color: var(--light_text) !important;

@@ -1,17 +1,18 @@
 import React, { useRef} from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { notesMiddleware, alertMiddleware } from '../../state/index';
 
 const EditModal = (props) => {
     const {openModal, currentNote, setCurrentNote} = props;
+    const history =useHistory();
     const dispatch = useDispatch();
     const {editNote} = bindActionCreators(notesMiddleware,dispatch)
     const {showAlert} = bindActionCreators(alertMiddleware,dispatch)
-    const closeModal = useRef(null);
+    const closeModal = useRef();
     const handleSubmit = async (e) => {
-        await editNote(currentNote.id,currentNote.etitle,currentNote.edescription,currentNote.etag);
+        await editNote(currentNote.id,currentNote.etitle,currentNote.edescription,currentNote.etag, currentNote.estatus);
         closeModal.current.click();
         showAlert("Updated Note Successfully","success");
     }
@@ -45,12 +46,15 @@ const EditModal = (props) => {
                                 <label htmlFor="etag" className="form-label">Tag</label>
                                 <input type="text" className="form-control"  id="etag" name="etag" aria-describedby="tag" onChange={handleChange} value={currentNote.etag}/>
                             </div>
-                            
+                            <div className="mb-3">
+                                <label htmlFor="estatus" className="form-label">Status</label>
+                                <input type="text" className="form-control" onChange={handleChange} id="estatus" name="estatus" value={currentNote.estatus} aria-describedby="status"/>
+                            </div>
                         </form>
                     </div>
                     <div className="modal-footer">
                         <button ref={closeModal} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <Link to="/" type="submit" className={currentNote.etitle.length<3 || currentNote.edescription.length<5 ? "btn btn-primary disabled": "btn btn-primary " } onClick={handleSubmit}>Update Note</Link>
+                        <button className={currentNote.etitle.length<3 || currentNote.edescription.length<5 ? "btn btn-primary disabled": "btn btn-primary " } onClick={handleSubmit}>Update Note</button>
                     </div>
                     </div>
                 </div>`

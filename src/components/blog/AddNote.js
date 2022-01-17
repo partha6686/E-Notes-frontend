@@ -12,18 +12,19 @@ const AddNote = () => {
     const [newNote, setNewNote] = useState({
         title:"",
         description: "",
-        tag: ""
+        tag: "",
+        status: ""
     });
     let history = useHistory();
     useEffect(() => {
         if(!localStorage.getItem('token')){
             showAlert("Please Login to Continue","warning");
-            history.push("/login");
+            history.push("/auth/login");
         }
         // eslint-disable-next-line
     }, [])
     const handleSubmit = async (e) => {
-        const json = await addNewNote(newNote.title,newNote.description,newNote.tag===''?'default':newNote.tag);
+        const json = await addNewNote(newNote.title,newNote.description,newNote.tag===''?'default':newNote.tag, newNote.status);
         if(!json.errors){
             showAlert("Added Note Successfully","success");
             history.push("/");
@@ -49,6 +50,10 @@ const AddNote = () => {
                 <div className="mb-3">
                     <label htmlFor="tag" className="form-label">Tag</label>
                     <input type="text" className="form-control" onChange={handleChange} id="tag" name="tag" value={newNote.tag} aria-describedby="tag"/>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="status" className="form-label">Status</label>
+                    <input type="text" className="form-control" onChange={handleChange} id="status" name="status" value={newNote.status} aria-describedby="status"/>
                 </div>
             </form>
             <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Add Note</button>

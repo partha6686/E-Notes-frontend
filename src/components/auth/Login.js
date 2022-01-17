@@ -8,7 +8,7 @@ import { BiErrorCircle } from "react-icons/bi";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
-import { alertMiddleware } from "../../state/index";
+import { userMiddleware, alertMiddleware } from '../../state/index';
 
 const Login = () => {
   const host = "http://localhost:3300";
@@ -21,6 +21,7 @@ const Login = () => {
   let history = useHistory();
   const dispatch = useDispatch();
   const { showAlert } = bindActionCreators(alertMiddleware, dispatch);
+  const {fetchUser} = bindActionCreators(userMiddleware,dispatch);
 
   /******************************************************************************************************************************************/
   const formValidator = () => {
@@ -55,10 +56,12 @@ const Login = () => {
       const json = await response.json();
       console.log(json);
       if (response.status === 200) {
-        localStorage.setItem("token", json.authToken);
+        await localStorage.setItem("token", json.authToken);
+        fetchUser();
         //Redirect
         history.push("/");
         showAlert("Logged in Successfully", "success");
+
       } else {
         showAlert(json.errors.msg ? json.errors.msg : json.errors, "danger");
       }

@@ -20,6 +20,7 @@ const NoteItem = (props) => {
                     <p className="card-text">{note.description}</p>
                     <i className="fas fa-trash mx-2" style={{color: "#E00232"}} onClick={()=>{handleDelete(note._id)}}></i>
                     <i className="far fa-edit mx-2" style={{color: "blue"}} onClick={()=>{updateNote(note)}}></i>
+                    <p>{note.status}</p>
                 </div>
             </div>
         </div>

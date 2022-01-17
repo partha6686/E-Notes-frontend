@@ -42,7 +42,7 @@
 .profile-sidebar{
     /* position: fixed; */
     position: sticky;
-    top: 0;
+    top: 60px;
     flex: 1;
     background-color: var(--dark);
     border-radius: 1rem;

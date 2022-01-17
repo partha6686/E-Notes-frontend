@@ -31,7 +31,7 @@ export const fetchNotes = () => {
 }
 
 //* ADD A NOTE
-export const addNewNote = (title, description, tag)=>{
+export const addNewNote = (title, description, tag, status)=>{
     const host = 'http://localhost:3300';
     //* API Calls
     return (async (dispatch)=>{
@@ -42,7 +42,7 @@ export const addNewNote = (title, description, tag)=>{
             'Content-Type': 'application/json',
             'auth-token': localStorage.getItem('token')
           },
-          body: JSON.stringify({title, description, tag}) 
+          body: JSON.stringify({title, description, tag, status}) 
         });
         // eslint-disable-next-line
         const json = await response.json();
@@ -73,7 +73,7 @@ export const deleteNote = (id)=>{
 }
 
 //* EDIT A NOTE
-export const editNote = (id,title, description, tag)=>{
+export const editNote = (id,title, description, tag, status)=>{
     const host = 'http://localhost:3300';
     //* API Calls to fetch the note to be updated
     return (async (dispatch)=>{
@@ -84,7 +84,7 @@ export const editNote = (id,title, description, tag)=>{
                 'Content-Type': 'application/json',
                 'auth-token': localStorage.getItem('token')
             },
-            body: JSON.stringify({title, description, tag})
+            body: JSON.stringify({title, description, tag, status})
         });
         // eslint-disable-next-line
         const json = await response.json(); 
