@@ -1,15 +1,15 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import EditModal from './EditModal';
 import NoteItem from './NoteItem';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { notesMiddleware, alertMiddleware } from '../../state/index';
 
 const Note = (props) => {
     const dispatch = useDispatch();
-    const {fetchUserNotes} = bindActionCreators(notesMiddleware,dispatch)
-    const {showAlert} = bindActionCreators(alertMiddleware,dispatch)
+    const { fetchUserNotes } = bindActionCreators(notesMiddleware, dispatch)
+    const { showAlert } = bindActionCreators(alertMiddleware, dispatch)
     const notes = useSelector(state => state.notes)
     let history = useHistory();
     const [currentNote, setCurrentNote] = useState({
@@ -21,22 +21,22 @@ const Note = (props) => {
     })
     const ref = useRef(null)
     useEffect(() => {
-        if(localStorage.getItem('token')){
+        if (localStorage.getItem('token')) {
             fetchUserNotes();
-        }else{
-            showAlert("Please Login to Continue","warning");
+        } else {
+            showAlert("Please Login to Continue", "warning");
             history.push("/login");
         }
         // eslint-disable-next-line
     }, [])
-    const updateNote = (note)=>{
+    const updateNote = (note) => {
         ref.current.click();
-        setCurrentNote({id:note._id, etitle: note.title, edescription: note.description, etag: note.tag, estatus: note.status});   
+        setCurrentNote({ id: note._id, etitle: note.title, edescription: note.description, etag: note.tag, estatus: note.status });
     }
     return (
-        <div className="profile-notes">
+        <div className="blogs">
             <EditModal openModal={ref} currentNote={currentNote} setCurrentNote={setCurrentNote} />
-            {notes.map((note)=>(
+            {notes.map((note) => (
                 <NoteItem key={note._id} updateNote={updateNote} note={note} />
             ))}
         </div>

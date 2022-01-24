@@ -1,0 +1,38 @@
+.blogs {
+  margin-top: 1rem;
+}
+.b_card {
+  margin-bottom: 1rem;
+  background-color: var(--dark);
+  padding: 1rem;
+  border-radius: 1rem;
+}
+.b_card hr {
+  color: var(--light_text);
+  /* height: 2px; */
+}
+.b_card_head {
+  display: flex;
+  justify-content: space-between;
+  /* margin-bottom: 12px; */
+}
+.b_card_head img {
+  border-radius: 100%;
+  object-fit: cover;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--dark);
+  margin-right: 10px;
+}
+.b_card_head h5 {
+  display: inline-block;
+  position: relative;
+  top: 3px;
+}
+.b_card_footer {
+  display: flex;
+}
+.b_card_footer div {
+  width: 33%;
+  text-align: center;
+}

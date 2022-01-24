@@ -10,7 +10,9 @@ const Profile = () => {
             <ProfileHero />
             <div className='profile'>
                 <ProfileInfo />
-                <Note />
+                <div className='profile-notes'>
+                    <Note />
+                </div>
             </div>
         </div>
     )

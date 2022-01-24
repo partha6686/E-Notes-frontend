@@ -4,7 +4,7 @@ import React from 'react';
 
 const Home = (props) => {
     return (
-        <div className="container my-3">
+        <div className="">
             {/* <AddNote/> 
             <Note showAlert={props.showAlert} />*/}
         </div>
