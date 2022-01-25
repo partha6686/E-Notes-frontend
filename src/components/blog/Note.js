@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import EditModal from './EditModal';
-import NoteItem from './NoteItem';
+import NoteItem from '../common/NoteItem';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -25,7 +25,7 @@ const Note = (props) => {
             fetchUserNotes();
         } else {
             showAlert("Please Login to Continue", "warning");
-            history.push("/login");
+            history.push("/auth/login");
         }
         // eslint-disable-next-line
     }, [])

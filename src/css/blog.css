@@ -6,6 +6,8 @@
   background-color: var(--dark);
   padding: 1rem;
   border-radius: 1rem;
+  word-wrap: break-word !important;
+  text-align: justify;
 }
 .b_card hr {
   color: var(--light_text);

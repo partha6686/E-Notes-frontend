@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { notesMiddleware, alertMiddleware } from '../../state/index';
-import "../../css/blog.css";
 import { HiShare, HiDotsVertical } from "react-icons/hi";
 import { AiOutlineFire, AiOutlineComment } from "react-icons/ai"
 
@@ -31,7 +30,6 @@ const NoteItem = (props) => {
     useEffect(() => {
         getAuthor();
     }, [note])
-    console.log(author);
     return (
         <div className="b_card" >
             <div className='b_card_head'>

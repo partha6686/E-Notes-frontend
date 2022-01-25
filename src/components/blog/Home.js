@@ -1,12 +1,10 @@
 import React from 'react';
-// import AddNote from './AddNote';
-// */}
+import Feed from './Feed';
 
 const Home = (props) => {
     return (
-        <div className="">
-            {/* <AddNote/> 
-            <Note showAlert={props.showAlert} />*/}
+        <div className="home">
+            <Feed />
         </div>
     );
 }

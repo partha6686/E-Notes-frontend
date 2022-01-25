@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../../css/auth.css";
 import UnderLine from "../common/UnderLine";
 import { HiOutlineMail } from "react-icons/hi";
 import { RiLockPasswordLine } from "react-icons/ri";

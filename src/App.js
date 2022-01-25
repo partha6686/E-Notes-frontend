@@ -1,11 +1,11 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import Nav from "./components/common/Nav";
 import Home from "./components/blog/Home";
 import About from "./components/About";
-import { 
-  BrowserRouter as Router, 
+import {
+  BrowserRouter as Router,
   Switch,
-  Route 
+  Route
 } from "react-router-dom";
 import Alert from './components/common/Alert';
 import AddNote from './components/blog/AddNote';
@@ -16,11 +16,16 @@ import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { alertMiddleware } from './state/index';
 import './css/App.css';
+import './css/auth.css';
+import './css/blog.css';
+import './css/navbar.css';
+import './css/profile.css';
+import './css/home.css';
 
 
 function App() {
   const dispatch = useDispatch();
-  const {showAlert} = bindActionCreators(alertMiddleware,dispatch)
+  const { showAlert } = bindActionCreators(alertMiddleware, dispatch)
   return (
     <div className='app'>
       <Router>

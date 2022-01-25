@@ -19,6 +19,13 @@
    color: var(--light_text) ;
    text-decoration: none;
 }
+.nav-bar .button-outline{
+    color: var(--bright) ;
+    margin-right: 12px;
+}
+.nav-bar .button-outline:hover{
+    color: var(--dark);
+}
 .nav-bar .nav-dropdown-btn{
     margin-right: 1rem;
     cursor: pointer;

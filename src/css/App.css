@@ -17,6 +17,7 @@
     background-image: url(../images/bg-stars.svg);
     color: var(--light_text);
     padding-top: 22px;
+    padding-bottom: 22px;
     /* overflow-x: hidden; */
 }
 .hero-box{
