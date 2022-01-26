@@ -1,26 +1,27 @@
-.auth{
-    background-color: var(--dark);
-    width: 400px;
-    margin: 0 auto;
-    text-align: center;
-    padding: 2rem 1rem 1rem;
-    border-radius: 1rem;
+.auth {
+  background-color: var(--dark);
+  width: 400px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 2rem 1rem 1rem;
+  border-radius: 1rem;
 }
-.auth .input-div, .auth .btn-div{
-    margin: 24px;
-    position: relative;
+.auth .input-div,
+.auth .btn-div {
+  margin: 24px;
+  position: relative;
 }
-.auth .input-div{
-    border-bottom: solid 3px var(--light);
-    display: flex;
+.auth .input-div {
+  border-bottom: solid 3px var(--light);
+  display: flex;
 }
-.auth input{
-    border: none;
-    background-color: var(--dark);
-    margin: auto 0;
-    padding: 8px;
-    flex: 100%;
-    color: var(--light_text);
+.auth input {
+  border: none;
+  background-color: var(--dark);
+  margin: auto 0;
+  padding: 8px;
+  flex: 100%;
+  color: var(--light_text);
 }
 
 /********Remove EYE button from Edge browser ***********/
@@ -28,77 +29,81 @@
 .auth input[type="password"]::-ms-clear {
   display: none;
 }
-.auth .icon, .auth .pass-icon{
-    position: relative;
-    top: 10px;
-    color: var(--bright);
+.auth .icon,
+.auth .pass-icon {
+  position: relative;
+  top: 10px;
+  color: var(--bright);
 }
-.pass-icon{
-    cursor: pointer;
+.pass-icon {
+  cursor: pointer;
 }
-.auth .button-outline ,.auth .button-fill{
-    width: 100%;
-    margin: 1rem 0;
+.auth .button-outline,
+.auth .button-fill {
+  width: 100%;
+  margin: 1rem 0;
 }
-.auth hr{
-    background-color: var(--light);
-    color: var(--light);
-    opacity: 1;
-    border: none;
+.auth hr {
+  background-color: var(--light);
+  color: var(--light);
+  opacity: 1;
+  border: none;
 }
-.auth .btn-div p{
-    margin: 32px auto 0;
+.auth .btn-div p {
+  margin: 32px auto 0;
 }
-.auth .btn-div span{
-    position: absolute;
-    background-color: var(--dark);
-    padding: 2px 6px;
-    max-width: fit-content;
-    left: 0;
-    right: 0;
-    margin: auto;
-    top: -14px;
+.auth .btn-div span {
+  position: absolute;
+  background-color: var(--dark);
+  padding: 2px 6px;
+  max-width: fit-content;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: -14px;
 }
-.auth .input-error{
-    color: rgba(255, 0, 0, 0.849);
-    position: absolute;
-    bottom: -24px;
-    margin: 0 24px;
-    font-size: 14px;
-
+.auth .input-error {
+  color: rgba(255, 0, 0, 0.849);
+  position: absolute;
+  bottom: -24px;
+  margin: 0 24px;
+  font-size: 14px;
 }
 
 /*  MEDIA QUERRIES  */
 @media (max-width: 450px) {
-    .auth{
-        width: 90vw;
-    }
-    .auth .input-div, .auth .btn-div{
-        margin: 24px 10px;
-        position: relative;
-    }
-    .auth .input-error{
-        margin: 0 10px;
-    }
+  .auth {
+    width: 90vw;
+  }
+  .auth .input-div,
+  .auth .btn-div {
+    margin: 24px 10px;
+    position: relative;
+  }
+  .auth .input-error {
+    margin: 0 10px;
+  }
 }
-@media (max-width: 380px){
-    .auth{
-        width: 95vw;
-    }
-    .auth .input-div, .auth .btn-div{
-        margin: 24px 10px;
-        position: relative;
-    }
+@media (max-width: 380px) {
+  .auth {
+    width: 95vw;
+  }
+  .auth .input-div,
+  .auth .btn-div {
+    margin: 24px 10px;
+    position: relative;
+  }
 }
-@media (max-width: 300px){
-    .auth{
-        padding: 2rem 10px 1rem;
-    }
-    .auth .input-div, .auth .btn-div{
-        margin: 24px 6px;
-        position: relative;
-    }
-    .auth .input-error{
-        margin: 0 6px;
-    }
+@media (max-width: 300px) {
+  .auth {
+    padding: 2rem 10px 1rem;
+  }
+  .auth .input-div,
+  .auth .btn-div {
+    margin: 24px 6px;
+    position: relative;
+  }
+  .auth .input-error {
+    margin: 0 6px;
+  }
 }

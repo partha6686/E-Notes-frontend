@@ -53,7 +53,6 @@ const Login = () => {
       });
       // eslint-disable-next-line
       const json = await response.json();
-      console.log(json);
       if (response.status === 200) {
         await localStorage.setItem("token", json.authToken);
         fetchUser();

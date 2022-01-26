@@ -1,12 +1,12 @@
 import React, { useRef} from 'react';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { notesMiddleware, alertMiddleware } from '../../state/index';
 
 const EditModal = (props) => {
     const {openModal, currentNote, setCurrentNote} = props;
-    const history =useHistory();
+    // const history =useHistory();
     const dispatch = useDispatch();
     const {editNote} = bindActionCreators(notesMiddleware,dispatch)
     const {showAlert} = bindActionCreators(alertMiddleware,dispatch)

@@ -5,7 +5,7 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { FaRegUser } from "react-icons/fa";
 import { BiErrorCircle } from "react-icons/bi";
-import {BsArrowCounterclockwise} from "react-icons/bs";
+import { BsArrowCounterclockwise } from "react-icons/bs";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -24,7 +24,7 @@ const SignUp = () => {
   let history = useHistory();
   const dispatch = useDispatch();
   const { showAlert } = bindActionCreators(alertMiddleware, dispatch);
-  const {fetchUser} = bindActionCreators(userMiddleware,dispatch);
+  const { fetchUser } = bindActionCreators(userMiddleware, dispatch);
 
   const formValidator = () => {
     if (
@@ -64,7 +64,6 @@ const SignUp = () => {
       });
       // eslint-disable-next-line
       const json = await response.json();
-      console.log(json);
       if (response.status === 200) {
         await localStorage.setItem("token", json.authToken);
         fetchUser();
@@ -113,9 +112,9 @@ const SignUp = () => {
             <br />
           </div>
           {createUser.email &&
-          /[a-zA-Z0-9]+[\.]?([a-zA-Z0-9]+)?[\@][a-z]{3,9}[\.][a-z]{2,5}/g.test(
-            createUser.email
-          ) === false ? (
+            /[a-zA-Z0-9]+[\.]?([a-zA-Z0-9]+)?[\@][a-z]{3,9}[\.][a-z]{2,5}/g.test(
+              createUser.email
+            ) === false ? (
             <p className="input-error">
               <BiErrorCircle size="18px" /> Enter a Valid email address
             </p>
@@ -127,7 +126,7 @@ const SignUp = () => {
           <div className="input-div">
             <RiLockPasswordLine size="22px" className="icon" />
             <input
-            type={!showPassword ?"password": "text"}
+              type={!showPassword ? "password" : "text"}
               name="password"
               placeholder="Enter Password"
               onChange={handleChange}

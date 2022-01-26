@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { notesMiddleware, alertMiddleware } from '../../state/index';
 import { HiShare, HiDotsVertical } from "react-icons/hi";
-import { AiOutlineFire, AiOutlineComment } from "react-icons/ai"
+import { AiOutlineFire, AiOutlineComment, AiOutlineDelete } from "react-icons/ai"
+import { BiEditAlt, BiBookmark } from "react-icons/bi"
 
 const NoteItem = (props) => {
+
     const host = 'http://localhost:3300';
+    let location = useLocation();
     const dispatch = useDispatch();
     const { deleteNote } = bindActionCreators(notesMiddleware, dispatch)
     const { showAlert } = bindActionCreators(alertMiddleware, dispatch)
@@ -14,8 +18,13 @@ const NoteItem = (props) => {
     const handleDelete = (id) => {
         deleteNote(id);
         showAlert("Deleted Note Successfully", "success");
+        handleShow();
     }
+    const [show, setShow] = useState(false);
     const [author, setAuthor] = useState();
+    const handleShow = () => {
+        setShow(!show);
+    }
     const getAuthor = async () => {
         const url = `${host}/api/profile/${note.user}`;
         const response = await fetch(url, {
@@ -29,6 +38,10 @@ const NoteItem = (props) => {
     }
     useEffect(() => {
         getAuthor();
+        return () => {
+            setAuthor({});
+        };
+        // eslint-disable-next-line
     }, [note])
     return (
         <div className="b_card" >
@@ -37,7 +50,15 @@ const NoteItem = (props) => {
                     <img src={author && host + '/' + author.profileImg} alt="profile" />
                     <h5>{author && author.name}</h5>
                 </div>
-                <HiDotsVertical />
+                {location.pathname === '/profile' && <>
+                    <HiDotsVertical size='26px' style={{ marginTop: '2px', cursor: 'pointer' }} onClick={handleShow} />
+                    <div className={show ? 'dropdown_div show' : 'dropdown_div'}>
+                        <li onClick={() => { updateNote(note); handleShow() }}><BiEditAlt size='22px' className='icon' />Edit Blog</li>
+                        <li><BiBookmark size='22px' className='icon' />Save Blog</li>
+                        <hr />
+                        <li onClick={() => { handleDelete(note._id) }}><AiOutlineDelete size='22px' className='icon' />Delete Blog</li>
+                    </div>
+                </>}
             </div>
             <hr />
             <div className="b_card_body">

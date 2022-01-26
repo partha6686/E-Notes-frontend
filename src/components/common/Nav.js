@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { userMiddleware, alertMiddleware } from "../../state/index";
 import { AiFillHome, AiFillCaretDown } from "react-icons/ai";
-import { IoAddSharp } from "react-icons/io5";
+import { IoAddSharp, IoSettingsSharp, IoLogOutOutline } from "react-icons/io5";
+import { BiUser, BiHelpCircle } from "react-icons/bi";
 
 const Nav = () => {
   const host = 'http://localhost:3300/';
@@ -17,17 +18,16 @@ const Nav = () => {
   const user = useSelector(state => state.user)
 
   useEffect(() => {
-    if (location.pathname !== '/auth/login' && location.pathname !== '/auth/signup' && location.pathname !== '/') {
+    if (location.pathname !== '/auth/login' && location.pathname !== '/auth/signup') {
       if (localStorage.getItem("token")) {
         fetchUser();
-      } else {
+      } else if (location.pathname !== '/') {
         showAlert("Please Login to Continue", "warning");
         history.push("/auth/login");
       }
     }
     // eslint-disable-next-line
-  }, [user])
-  console.log(user);
+  }, [])
   const handleLogout = () => {
     localStorage.removeItem("token");
     showAlert("Logged out Successfully", "success");
@@ -52,12 +52,12 @@ const Nav = () => {
               <img src={`${host}${user.profileImg}`} width={32} alt='profile' />
               <AiFillCaretDown size="16px" />
               <div className="dropdown-div">
-                <Link to="/profile">Profile</Link>
-                <Link to="/">Help</Link>
-                <Link to="/">Settings</Link>
+                <Link to="/profile"><BiUser size='22px' className='icon' />Profile</Link>
+                <Link to="/"><BiHelpCircle size='22px' className='icon' />Help</Link>
+                <Link to="/"><IoSettingsSharp size='22px' className='icon' />Settings</Link>
                 <hr />
                 <Link to="/auth/login" onClick={handleLogout}>
-                  Logout
+                  <IoLogOutOutline size='22px' className='icon' />Logout
                 </Link>
               </div>
             </div>

@@ -1,109 +1,110 @@
-:root{
-    --dark: #202c37;
-    --light: #2b3945;
-    --bright: #29a0d3;
-    --light_text: hsl(0, 0%, 86%);
+:root {
+  --dark: #202c37;
+  --light: #2b3945;
+  --bright: #29a0d3;
+  --light_text: hsl(0, 0%, 86%);
 }
-*{
-    margin: 0;
-    padding: 0;
-    /* font-family: sans-serif; */
-
+* {
+  margin: 0;
+  padding: 0;
+  /* font-family: sans-serif; */
 }
-.app{
-    background-color: var(--light);
-    width: 100%;
-    min-height: 100vh;
-    background-image: url(../images/bg-stars.svg);
-    color: var(--light_text);
-    padding-top: 22px;
-    padding-bottom: 22px;
-    /* overflow-x: hidden; */
+.app {
+  background-color: var(--light);
+  width: 100%;
+  min-height: 100vh;
+  background-image: url(../images/bg-stars.svg);
+  color: var(--light_text);
+  padding-top: 22px;
+  padding-bottom: 22px;
+  /* overflow-x: hidden; */
 }
-.hero-box{
-    width: 60vw;
-    max-width: 1200px;
-    min-width: 990px;
-    margin: 0 auto;
-    padding: 10rem auto !important;
+.hero-box {
+  width: 60vw;
+  max-width: 1200px;
+  min-width: 990px;
+  margin: 0 auto;
+  padding: 10rem auto !important;
 }
 
 /******************************* Removing and adding browsers default styles [V.IMP] ******************************************/
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active{
-    -webkit-box-shadow: 0 0 0 30px var(--dark) inset !important;
-    box-shadow: 0 0 0 30px var(--dark) inset !important;
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px var(--dark) inset !important;
+  box-shadow: 0 0 0 30px var(--dark) inset !important;
 }
-input:-webkit-autofill{
-    -webkit-text-fill-color: var(--light_text) !important;
+input:-webkit-autofill {
+  -webkit-text-fill-color: var(--light_text) !important;
 }
-input:focus{
-    outline: none!important;
-    border: none;
-    background-color: var(--dark);
+input:focus {
+  outline: none !important;
+  border: none;
+  background-color: var(--dark);
 }
 
 /**************************************************** Button ******************************************/
-.button-outline{
-    background-color: var(--dark);
-    border: 2px solid var(--bright);
-    color: var(--bright);
-    font-weight: 500;
-    padding: 6px 18px;
-    border-radius: 30px;
+.button-outline {
+  background-color: var(--dark);
+  border: 2px solid var(--bright);
+  color: var(--bright);
+  font-weight: 500;
+  padding: 6px 18px;
+  border-radius: 30px;
 }
-.button-outline:hover{
-    background-color: var(--bright);
-    color: var(--dark);
+.button-outline:hover {
+  background-color: var(--bright);
+  color: var(--dark);
 }
-.button-fill{
-    border: none;
-    background-color: var(--bright);
-    color: var(--dark);
-    font-weight: 500;
-    padding: 8px 18px;
-    border-radius: 30px;
+.button-fill {
+  border: none;
+  background-color: var(--bright);
+  color: var(--dark);
+  font-weight: 500;
+  padding: 8px 18px;
+  border-radius: 30px;
 }
-.button-fill:hover{
-    background-image: linear-gradient(to right, var(--bright), #c058f3);
+.button-fill:hover {
+  background-image: linear-gradient(to right, var(--bright), #c058f3);
 }
 
 /************************************************** Modal *****************************************************/
-.modal-content{
-    background-color: var(--dark);
-    color: var(--light_text);
-    border-radius: 1rem;
+.modal-content {
+  background-color: var(--dark);
+  color: var(--light_text);
+  border-radius: 1rem;
 }
-.modal-content textarea,.modal-content input,.modal-content select{
-    background-color: var(--light);
-    border-color: var(--dark);
-    color: var(--light_text);
+.modal-content textarea,
+.modal-content input,
+.modal-content select {
+  background-color: var(--light);
+  border-color: var(--dark);
+  color: var(--light_text);
 }
-textarea{
-    height: 100px;
+textarea {
+  height: 100px;
 }
-.modal-content .modal-header{
-    border-bottom: 3px solid var(--light);
+.modal-content .modal-header {
+  border-bottom: 3px solid var(--light);
 }
 
 /************************************************  MEDIA QUERRIES  ****************************************************/
 @media (max-width: 1240px) {
-    .hero-box{
-        width: 80vw;
-        min-width: 660px;
-    }
+  .hero-box {
+    width: 80vw;
+    min-width: 660px;
+  }
 }
 @media (max-width: 740px) {
-    .hero-box{
-        width: 90vw;
-        min-width: 300px;
-    }
+  .hero-box {
+    width: 90vw;
+    min-width: 300px;
+  }
 }
 @media (max-width: 380px) {
-    .hero-box{
-        width: 95vw;
-        min-width: 280px;
-    }
+  .hero-box {
+    width: 95vw;
+    min-width: 280px;
+  }
 }
