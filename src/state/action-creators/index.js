@@ -38,6 +38,14 @@ export const updateNote = (note)=>{
         })
     }
 }
+export const likeNote = (note)=>{
+    return (dispatch) => {
+        dispatch({
+            type: 'LIKE_NOTE',
+            payload: note
+        })
+    }
+}
 
 export const setAlert = (alert) =>{
     return (dispatch) => {

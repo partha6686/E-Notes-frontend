@@ -69,6 +69,13 @@
   margin-bottom: 2px;
   margin-right: 8px;
 }
+.b_card_head .menu_icon {
+  margin-top: 2px;
+  cursor: pointer;
+}
+.b_card_head .menu_icon.active {
+  color: var(--bright);
+}
 /**************************** CARD FOOTER *****************************/
 .b_card_footer {
   display: flex;

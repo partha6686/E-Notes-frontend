@@ -10,6 +10,7 @@ const Feed = (props) => {
     const notes = useSelector(state => state.notes)
     useEffect(() => {
         fetchNotes();
+        console.log("+1");
         // eslint-disable-next-line
     }, [])
     return (

@@ -20,7 +20,7 @@ const Login = () => {
   let history = useHistory();
   const dispatch = useDispatch();
   const { showAlert } = bindActionCreators(alertMiddleware, dispatch);
-  const {fetchUser} = bindActionCreators(userMiddleware,dispatch);
+  const { fetchUser } = bindActionCreators(userMiddleware, dispatch);
 
   /******************************************************************************************************************************************/
   const formValidator = () => {
@@ -94,9 +94,9 @@ const Login = () => {
           </div>
 
           {user.email &&
-          /[a-zA-Z0-9]+[\.]?([a-zA-Z0-9]+)?[\@][a-z]{3,9}[\.][a-z]{2,5}/g.test(
-            user.email
-          ) === false ? (
+            /[a-zA-Z0-9]+[\.]?([a-zA-Z0-9]+)?[\@][a-z]{3,9}[\.][a-z]{2,5}/g.test(
+              user.email
+            ) === false ? (
             <p className="input-error">
               <BiErrorCircle size="18px" /> Enter a Valid email address
             </p>
@@ -107,13 +107,14 @@ const Login = () => {
         <div className="input-div">
           <RiLockPasswordLine size="22px" className="icon" />
           <input
-            type={!showPassword ?"password": "text"}
+            type={!showPassword ? "password" : "text"}
             name="password"
             placeholder="Enter Password"
             value={user.password}
             onChange={handleChange}
           />
-          {!showPassword ? <AiOutlineEye size="22px" className="pass-icon" onClick={()=>{setShowPassword(!showPassword) }} />: <AiOutlineEyeInvisible size="22px" className="pass-icon" onClick={()=>{setShowPassword(!showPassword) }} /> }
+          {showPassword ? <AiOutlineEye size="22px" className="pass-icon" onClick={() => { setShowPassword(!showPassword) }} /> :
+            <AiOutlineEyeInvisible size="22px" className="pass-icon" onClick={() => { setShowPassword(!showPassword) }} />}
           <br />
         </div>
         <div className="btn-div">

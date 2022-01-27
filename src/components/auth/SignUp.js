@@ -26,7 +26,7 @@ const SignUp = () => {
   const { showAlert } = bindActionCreators(alertMiddleware, dispatch);
   const { fetchUser } = bindActionCreators(userMiddleware, dispatch);
 
-  const formValidator = () => {
+  const formValidator = async () => {
     if (
       createUser.name.length < 3 ||
       !/[a-zA-Z0-9]+[\.]?([a-zA-Z0-9]+)?[\@][a-z]{3,9}[\.][a-z]{2,5}/g.test(
@@ -35,9 +35,9 @@ const SignUp = () => {
       createUser.password.length < 5 ||
       createUser.cpassword !== createUser.password
     ) {
-      setError(true);
+      await setError(true);
     } else {
-      setError(false);
+      await setError(false);
     }
   };
 
@@ -48,7 +48,7 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    formValidator();
+    await formValidator();
     if (!error) {
       const url = `${host}/api/auth/register`;
       const response = await fetch(url, {
@@ -131,7 +131,7 @@ const SignUp = () => {
               placeholder="Enter Password"
               onChange={handleChange}
             />
-            {!showPassword ? (
+            {showPassword ? (
               <AiOutlineEye
                 size="22px"
                 className="pass-icon"
@@ -178,7 +178,9 @@ const SignUp = () => {
             )}
         </div>
         <div className="btn-div">
-          <button className="button-fill">Sign up</button>
+          <button type="submit" className="button-fill">
+            Sign up
+          </button>
         </div>
       </form>
       <div className="btn-div">

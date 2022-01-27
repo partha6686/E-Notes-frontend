@@ -1,4 +1,5 @@
-import { setNotes, addNote, removeNote, updateNote, setUserNotes } from '../index';
+import { setNotes, addNote, removeNote, updateNote, likeNote, setUserNotes } from '../index';
+const host = 'http://localhost:3300';
 
 //* FETCH NOTES OF A SPECIFIC USER
 export const fetchUserNotes = () => {
@@ -91,4 +92,36 @@ export const editNote = (id, title, description, tag, status) => {
         dispatch(updateNote(json.note));
         return json;
     })
+}
+
+/***************************************** LIKE A POST ***********************************************/
+export const likeBlog = (id) => {
+    return (async (dispatch) => {
+        const url = `${host}/api/notes/like/${id}`;
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': localStorage.getItem('token')
+            }
+        });
+        const json = await response.json();
+        dispatch(likeNote(json.note));
+    });
+}
+
+/***************************************** UNLIKE A POST ***********************************************/
+export const unlikeBlog = (id) => {
+    return (async (dispatch) => {
+        const url = `${host}/api/notes/unlike/${id}`;
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': localStorage.getItem('token')
+            }
+        });
+        const json = await response.json();
+        dispatch(likeNote(json.note));
+    });
 }
