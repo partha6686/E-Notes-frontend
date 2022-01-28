@@ -1,11 +1,12 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { notesMiddleware, alertMiddleware } from '../../state/index';
-import { HiShare, HiDotsVertical } from "react-icons/hi";
+import { HiDotsVertical } from "react-icons/hi";
 import { AiOutlineFire, AiFillFire, AiOutlineComment, AiOutlineDelete } from "react-icons/ai"
 import { BiEditAlt, BiBookmark } from "react-icons/bi"
+import { RiBookmarkLine, RiBookmarkFill } from "react-icons/ri";
 
 const NoteItem = (props) => {
     const user = useSelector((state) => state.user);
@@ -81,26 +82,26 @@ const NoteItem = (props) => {
                     </div>
                 </>}
             </div>
-            <hr />
             <div className="b_card_body">
                 <h5 className="card-title">{note.title}</h5>
                 <p className="card-text">{note.description}</p>
+                <span>{note.likes.length} likes</span>
             </div>
-            <hr />
-            <div className='b_card_footer'>
-                <div onClick={handleLike}>
-                    {like ? <AiFillFire className='icon' size="25px" /> : <AiOutlineFire className='icon' size="25px" />}
-                    <span>{note.likes.length}</span>
-                </div>
-                <div>
-                    <AiOutlineComment className='icon' size="25px" />
-                </div>
-                <div>
-                    <HiShare className='icon' size="25px" />
-                </div>
-                {/*<i className="fas fa-trash mx-2" style={{ color: "#E00232" }} onClick={() => { handleDelete(note._id) }}></i>
+            {user._id && <>
+                <div className='b_card_footer'>
+                    <div onClick={handleLike}>
+                        {like ? <AiFillFire className='icon liked' size="25px" /> : <AiOutlineFire className='icon' size="25px" />}
+                    </div>
+                    <div>
+                        <AiOutlineComment className='icon' size="25px" />
+                    </div>
+                    <div>
+                        <RiBookmarkLine className='icon' size="22px" />
+                    </div>
+                    {/*<i className="fas fa-trash mx-2" style={{ color: "#E00232" }} onClick={() => { handleDelete(note._id) }}></i>
                 <i className="far fa-edit mx-2" style={{ color: "blue" }} onClick={() => { updateNote(note) }}></i>*/}
-            </div>
+                </div>
+            </>}
         </div>
     )
 }

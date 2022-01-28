@@ -3,6 +3,7 @@
   --light: #2b3945;
   --bright: #29a0d3;
   --light_text: hsl(0, 0%, 86%);
+  --dark_text: #93969c;
 }
 * {
   margin: 0;

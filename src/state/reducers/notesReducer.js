@@ -27,7 +27,6 @@ const reducer = (state = [], action) => {
                     note.likes = action.payload.likes;
                 }
             });
-            console.log(state);
             return state;
         default:
             return state;
