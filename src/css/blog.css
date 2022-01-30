@@ -22,8 +22,8 @@
 .b_card_head img {
   border-radius: 100%;
   object-fit: cover;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border: 1px solid var(--dark);
   margin-right: 10px;
 }
@@ -81,8 +81,8 @@
 .b_card_body {
   padding: 12px 0 8px;
   margin: 10px 0 6px;
-  border-top: 1px solid #606470;
-  border-bottom: 1px solid #606470;
+  border-top: 2px solid var(--light);
+  border-bottom: 2px solid var(--light);
 }
 .b_card_body h5 {
   color: #fff;
@@ -111,6 +111,54 @@
   color: var(--bright);
 }
 .b_card_footer div:hover {
-  background-color: #2b3945;
+  background-color: var(--light);
   border-radius: 4px;
+}
+
+/**************************** CARD COMMENT *****************************/
+.b_card_comment {
+  margin: 6px 0 0;
+  padding: 12px 0 0;
+  border-top: 2px solid var(--light);
+  /* border-bottom: 2px solid var(--light); */
+}
+.b_card_comment .b_card_allcomments {
+  border-bottom: 2px solid var(--light);
+}
+.b_card_comment img {
+  border-radius: 100%;
+  object-fit: cover;
+  width: 24px;
+  height: 24px;
+  border: none;
+  margin-right: 10px;
+  /* margin-top: 2px; */
+  float: left;
+}
+
+/**************************** CARD ADD COMMENT FORM *****************************/
+.b_card_comment form img {
+  width: 40px;
+  height: 40px;
+}
+.b_card_comment form {
+  padding: 16px 0 10px;
+  display: flex;
+}
+.b_card_comment form input {
+  background-color: var(--light);
+  outline: none;
+  border: none;
+  height: 40px;
+  flex: 100;
+  margin: 0 10px 0 0;
+  border-radius: 20px;
+  font-size: 18px;
+  padding-left: 15px;
+  color: var(--light_text);
+}
+.b_card_comment .b_card_allcomments {
+  height: 230px;
+  overflow-y: scroll;
+  padding-right: 10px;
 }

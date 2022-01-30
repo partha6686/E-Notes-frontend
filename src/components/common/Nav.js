@@ -56,9 +56,9 @@ const Nav = () => {
                 <Link to="/"><BiHelpCircle size='22px' className='icon' />Help</Link>
                 <Link to="/"><IoSettingsSharp size='22px' className='icon' />Settings</Link>
                 <hr />
-                <Link to="/auth/login" onClick={handleLogout}>
+                <a href="/auth/login" onClick={handleLogout}>
                   <IoLogOutOutline size='22px' className='icon' />Logout
-                </Link>
+                </a>
               </div>
             </div>
           </> :

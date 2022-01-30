@@ -7,6 +7,7 @@ import { HiDotsVertical } from "react-icons/hi";
 import { AiOutlineFire, AiFillFire, AiOutlineComment, AiOutlineDelete } from "react-icons/ai"
 import { BiEditAlt, BiBookmark } from "react-icons/bi"
 import { RiBookmarkLine, RiBookmarkFill } from "react-icons/ri";
+import Comment from '../blog/Comment';
 
 const NoteItem = (props) => {
     const user = useSelector((state) => state.user);
@@ -22,6 +23,9 @@ const NoteItem = (props) => {
         handleShow();
     }
     const [show, setShow] = useState(false);
+    const [showCmt, setShowCmt] = useState(false);
+    const [comments, setComments] = useState([]);
+    const [myCmt, setMyCmt] = useState("");
     const [like, setLike] = useState(false);
     const [author, setAuthor] = useState();
     const handleShow = () => {
@@ -29,7 +33,7 @@ const NoteItem = (props) => {
     }
     const likeStatus = () => {
         const newData = note.likes.map((id) => {
-            if (id == user._id) {
+            if (id === user._id) {
                 setLike(true);
             }
         })
@@ -53,6 +57,40 @@ const NoteItem = (props) => {
         });
         const json = await response.json();
         setAuthor(json);
+    }
+    const viewCmt = async () => {
+        if (!showCmt) {
+            const url = `${host}/api/notes/comment/${note._id}`;
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'auth-token': localStorage.getItem('token')
+                }
+            });
+            const json = await response.json();
+            // console.log(json);
+            setComments(json);
+        }
+        setShowCmt(!showCmt);
+
+    }
+    const addCmt = async (e) => {
+        e.preventDefault();
+        const url = `${host}/api/notes/comment/${note._id}`;
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': localStorage.getItem('token')
+            },
+            body: JSON.stringify({
+                comment: myCmt
+            })
+        });
+        const json = await response.json();
+        setComments(comments.concat(json));
+        setMyCmt("");
     }
     useEffect(() => {
         getAuthor();
@@ -92,7 +130,7 @@ const NoteItem = (props) => {
                     <div onClick={handleLike}>
                         {like ? <AiFillFire className='icon liked' size="25px" /> : <AiOutlineFire className='icon' size="25px" />}
                     </div>
-                    <div>
+                    <div onClick={viewCmt}>
                         <AiOutlineComment className='icon' size="25px" />
                     </div>
                     <div>
@@ -102,6 +140,20 @@ const NoteItem = (props) => {
                 <i className="far fa-edit mx-2" style={{ color: "blue" }} onClick={() => { updateNote(note) }}></i>*/}
                 </div>
             </>}
+            {showCmt &&
+                <div className='b_card_comment'>
+                    {comments.length > 0 && <div className='b_card_allcomments'>
+                        {comments.map((cmt) =>
+                            <Comment key={cmt._id} cmt={cmt} />
+                        )}
+                    </div>}
+                    <form onSubmit={(e) => addCmt(e)}>
+                        <img src={author && host + '/' + user.profileImg} alt="profile" />
+                        <input type='text' placeholder="Add a Comment..." onChange={(e) => setMyCmt(e.target.value)} value={myCmt} />
+                        <button className='button-fill' type='submit'>Post</button>
+                    </form>
+                </div>
+            }
         </div>
     )
 }
